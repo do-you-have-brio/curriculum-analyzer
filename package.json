@@ -4,5 +4,7 @@
 		"@types/bun": "latest",
 		"nx": "21.0.2"
 	},
-	"workspaces": ["apps/*"]
+	"workspaces": [
+		"apps/*"
+	]
 }

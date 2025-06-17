@@ -11,6 +11,8 @@ services:
       context: ./apps/api
     ports:
       - "4000:4000"
+    depends_on:
+      - auth
 
   auth:
     container_name: cv-auth

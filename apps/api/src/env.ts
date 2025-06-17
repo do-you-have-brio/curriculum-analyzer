@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const envSchema = z.object({
 	AUTH_SERVICE_URL: z.string().url(),

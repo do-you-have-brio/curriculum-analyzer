@@ -1,8 +1,8 @@
-import type { PrismaClient } from "@prisma/client";
-import { HTTPException } from "hono/http-exception";
-import { sign, verify } from "hono/jwt";
-import { env } from "./env";
-import type { SignInDto, SignUpDto } from "./schemas";
+import type { PrismaClient } from '@prisma/client';
+import { HTTPException } from 'hono/http-exception';
+import { sign, verify } from 'hono/jwt';
+import { env } from './env';
+import type { SignInDto, SignUpDto } from './schemas';
 
 export class AuthService {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -16,7 +16,7 @@ export class AuthService {
 
 		if (existingUser) {
 			throw new HTTPException(409, {
-				message: "User already exists",
+				message: 'User already exists',
 			});
 		}
 
@@ -29,7 +29,7 @@ export class AuthService {
 			},
 		});
 
-		const { password, ...rest } = user;
+		const { password: _password, ...rest } = user;
 
 		return rest;
 	}
@@ -42,7 +42,7 @@ export class AuthService {
 		});
 
 		if (!user) {
-			throw new HTTPException(404, { message: "User not found" });
+			throw new HTTPException(404, { message: 'User not found' });
 		}
 
 		const isPasswordValid = await Bun.password.verify(
@@ -51,10 +51,10 @@ export class AuthService {
 		);
 
 		if (!isPasswordValid) {
-			throw new Error("Invalid password");
+			throw new Error('Invalid password');
 		}
 
-		const { password, ...rest } = user;
+		const { password: _password, ...rest } = user;
 
 		const token = await sign(rest, env.JWT_SECRET);
 

@@ -1,15 +1,15 @@
 {
-  "name": "auth",
-  "scripts": {
-    "dev": "bun run --hot src/index.ts"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.9.0",
-    "hono": "^4.7.9",
-    "prisma": "^6.9.0",
-    "zod": "^3.25.51"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  }
+	"dependencies": {
+		"@prisma/client": "^6.9.0",
+		"hono": "^4.7.9",
+		"prisma": "^6.9.0",
+		"zod": "^3.25.51"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"name": "auth",
+	"scripts": {
+		"dev": "bun run --hot src/index.ts"
+	}
 }

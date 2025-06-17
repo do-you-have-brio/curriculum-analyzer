@@ -1,36 +1,36 @@
-import { Header } from "@/components/header";
-import appCss from "@/styles/app.css?url";
 import {
+	createRootRoute,
 	HeadContent,
 	Outlet,
 	Scripts,
-	createRootRoute,
-} from "@tanstack/react-router";
+} from '@tanstack/react-router';
 // app/routes/__root.tsx
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
+import { Header } from '@/components/header';
+import appCss from '@/styles/app.css?url';
 
 export const Route = createRootRoute({
+	component: RootComponent,
 	head: () => ({
-		meta: [
-			{
-				charSet: "utf-8",
-			},
-			{
-				name: "viewport",
-				content: "width=device-width, initial-scale=1",
-			},
-			{
-				title: "TanStack Start Starter",
-			},
-		],
 		links: [
 			{
-				rel: "stylesheet",
 				href: appCss,
+				rel: 'stylesheet',
+			},
+		],
+		meta: [
+			{
+				charSet: 'utf-8',
+			},
+			{
+				content: 'width=device-width, initial-scale=1',
+				name: 'viewport',
+			},
+			{
+				title: 'TanStack Start Starter',
 			},
 		],
 	}),
-	component: RootComponent,
 });
 
 function RootComponent() {

@@ -1,6 +1,6 @@
-import type { Context } from "hono";
-import { HTTPException } from "hono/http-exception";
-import { ZodError } from "zod";
+import type { Context } from 'hono';
+import { HTTPException } from 'hono/http-exception';
+import { ZodError } from 'zod';
 
 export function errorHandler(err: Error, c: Context) {
 	console.log(err);
@@ -10,7 +10,7 @@ export function errorHandler(err: Error, c: Context) {
 	}
 
 	if (err instanceof SyntaxError) {
-		return c.json({ message: "No body" }, 400);
+		return c.json({ message: 'No body' }, 400);
 	}
 
 	if (err instanceof ZodError) {

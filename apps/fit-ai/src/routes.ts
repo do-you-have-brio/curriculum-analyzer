@@ -1,15 +1,15 @@
-import { GoogleGenAI } from "@google/genai";
-import { write } from "bun";
-import { Hono } from "hono";
-import { ZodError } from "zod";
-import { env } from "./env";
-import { analyzeSchema } from "./schemas";
+import { GoogleGenAI } from '@google/genai';
+import { write } from 'bun';
+import { Hono } from 'hono';
+import { ZodError } from 'zod';
+import { env } from './env';
+import { analyzeSchema } from './schemas';
 
 export const routes = new Hono();
 
 const ai = new GoogleGenAI({ apiKey: env.API_KEY });
 
-routes.post("/analyze", async (c) => {
+routes.post('/analyze', async (c) => {
 	try {
 		const { job, profile } = analyzeSchema.parse(await c.req.json());
 
@@ -32,11 +32,11 @@ routes.post("/analyze", async (c) => {
   }
   `;
 
-		write("prompt.txt", prompt);
+		write('prompt.txt', prompt);
 
 		const completion = await ai.models.generateContent({
-			model: "gemini-2.0-flash",
 			contents: prompt,
+			model: 'gemini-2.0-flash',
 		});
 
 		console.log(completion);

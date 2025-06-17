@@ -1,4 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { createFileRoute } from '@tanstack/react-router';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import {
 	Form,
 	FormControl,
@@ -6,30 +10,25 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createFileRoute } from "@tanstack/react-router";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+} from '@/components/ui/form';
+import { Textarea } from '@/components/ui/textarea';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
 	component: Home,
 });
 
 const formSchema = z.object({
 	description: z.string().min(2, {
-		message: "Description must be at least 20 characters.",
+		message: 'Description must be at least 20 characters.',
 	}),
 });
 
 function Home() {
 	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
 		defaultValues: {
-			description: "",
+			description: '',
 		},
+		resolver: zodResolver(formSchema),
 	});
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
@@ -41,7 +40,7 @@ function Home() {
 	return (
 		<div className="p-8 flex flex-col">
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
 					<FormField
 						control={form.control}
 						name="description"
